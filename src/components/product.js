@@ -1,4 +1,4 @@
-// import React from 'react';
+
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import BuyBlue from '../assets/images/icons/buy-blue.svg';

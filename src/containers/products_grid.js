@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { removeLoading } from '../actions/notifications';
-// import { fetchProducts, orderProducts, fetchProductsWithLoading } from '../actions/products';
 import styled from 'styled-components';
 import Product from '../components/product';
 import _ from 'lodash';

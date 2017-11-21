@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import styled from 'styled-components';
 import coin from '../assets/images//icons/coin.svg';
 import buyWhite from '../assets/images/icons/buy-white.svg';
