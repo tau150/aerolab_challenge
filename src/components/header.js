@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import headerbg from '../assets/images/header-x1.png';
+import headerbg from '../assets/images/header-x1.jpg';
 
 
 
@@ -9,11 +9,14 @@ const Main = styled.div`
   background-size:cover;
   background-position: 90% 100%;
   height: 300px;
-  box-shadow: -1px -11px 24px -9px rgba(0,0,0,0.75);
 
+  @media(min-width: 768px){
+      height: 450px;
+  }
 `;
 
 const Header =() =>{
+
   return(
     <div>
       <Main />

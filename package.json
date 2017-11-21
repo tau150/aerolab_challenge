@@ -16,12 +16,15 @@
     "styled-components": "^2.2.3"
   },
   "devDependencies": {
+    "now": "^8.5.2",
+    "now-serve": "^0.5.1",
     "react-scripts": "1.0.17"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && ns build"
   }
 }

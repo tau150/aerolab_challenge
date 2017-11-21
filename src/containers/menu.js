@@ -122,6 +122,8 @@ class Menu extends Component {
     }
   }
 
+
+
   handleOnClickOrder(products, criteria, order, order_name){
     this.setState({order: order_name})
     this.props.orderProducts(products, criteria, order);

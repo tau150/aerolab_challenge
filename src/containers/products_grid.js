@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { removeLoading } from '../actions/notifications';
-import { fetchProducts, orderProducts, fetchProductsWithLoading } from '../actions/products';
-
+// import { fetchProducts, orderProducts, fetchProductsWithLoading } from '../actions/products';
 import styled from 'styled-components';
 import Product from '../components/product';
 import _ from 'lodash';
@@ -41,17 +40,11 @@ const Grid = styled.div`
 
 class ProductsGrid extends Component {
 
-  componentDidUpdate(){
-    this.props.removeLoading();
-  }
-  componentWillMount(){
-    this.props.fetchProductsWithLoading();
-  }
-
 
   render(){
 
   if( !this.props.products || !this.props.user ) return null;
+
 
     const cunckedProducts = _.chunk(this.props.products, 16)
 
@@ -89,4 +82,4 @@ const mapStateToProps = (state)=>{
   }
 }
 
-export default connect( mapStateToProps, {removeLoading, fetchProductsWithLoading, fetchProducts, orderProducts} ) (ProductsGrid);
+export default connect( mapStateToProps ) (ProductsGrid);

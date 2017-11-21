@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-import { addLoading } from './notifications'
+import { addLoading, removeLoading } from './notifications'
 import _ from 'lodash';
 
 export const FETCH_PRODUCTS = 'FETCH_PRODUCTS'
@@ -21,6 +21,11 @@ export function fetchProductsWithLoading(){
   return dispatch => {
     dispatch(addLoading());
     dispatch(fetchProducts())
+    .then(
+        response => {
+          dispatch(removeLoading())
+        }   
+    )
   }
 }
 

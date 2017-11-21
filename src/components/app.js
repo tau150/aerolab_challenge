@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import LoggedUser from '../containers/logged_user';
 import Header from './header';
 import ProductsGrid from '../containers/products_grid';
 import styled from 'styled-components';
 import Toast from '../containers/toast'
-
+import { fetchProductsWithLoading, removeLoading } from '../actions/products';
 import Loading from './loading';
 
 const AppContainer = styled.div`
@@ -14,6 +15,11 @@ const AppContainer = styled.div`
 
 
 class App extends Component {
+
+
+    componentWillMount(){
+      this.props.fetchProductsWithLoading();
+    }
 
   render() {
     return (
@@ -29,4 +35,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null, {fetchProductsWithLoading}) (App);

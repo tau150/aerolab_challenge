@@ -5,6 +5,7 @@ import BuyBlue from '../assets/images/icons/buy-blue.svg';
 import MissingBadge from './missing_badge';
 import { connect } from 'react-redux';
 import ReedemMask from '../containers/redeem_mask';
+import { removeLoading } from '../actions/notifications'
 
 
 
@@ -72,6 +73,7 @@ class Product extends Component {
 
   }
 
+
    renderRedeem(){
 
      if(this.props.user.points - this.props.cost > 0){
@@ -126,4 +128,4 @@ const mapStateToProps = (state)=>{
 }
 
 
-export default connect(mapStateToProps) (Product);
+export default connect(mapStateToProps, {removeLoading}) (Product);
