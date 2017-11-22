@@ -74,7 +74,7 @@ class Product extends Component {
   }
 
 
-   renderRedeem(){
+   renderRedeem=()=>{
 
      if(this.props.user.points - this.props.cost  >= 0){
         if(this.state.show){
@@ -107,8 +107,8 @@ class Product extends Component {
   return(
 
     <ProductContainer className='product'
-                      onMouseEnter={()=> this.renderRedeem() }
-                      onMouseLeave={()=>this.renderRedeem() }>
+                      onMouseEnter={ this.renderRedeem }
+                      onMouseLeave={this.renderRedeem }>
       { missingBadge }
       { buyIcon }
       { redeem }

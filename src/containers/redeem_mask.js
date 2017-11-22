@@ -48,10 +48,9 @@ const Mask = styled.div`
 class RedeemMask extends Component {
 
 
-  handleOnClickRedeem(product_id){
+  handleOnClickRedeem=(product_id)=>{
     this.props.reddemProductAndUpdateUser(product_id)
   }
-
 
   render() {
     return(
@@ -61,7 +60,8 @@ class RedeemMask extends Component {
           <img src={coin} alt='coin' />
         </div>
         <img className='buy-white' src={buyWhite} alt='Buy' />
-        <a onClick={()=>{ this.handleOnClickRedeem(this.props.productId)}}>Redeem now !</a>
+        <a onClick={ this.handleOnClickRedeem(this.props.productId)}>Redeem now !</a>
+
         <p>{this.props._id}</p>
       </Mask>
     )

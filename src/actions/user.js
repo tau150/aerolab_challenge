@@ -5,7 +5,7 @@ import {launchToast} from './notifications';
 
 export const FETCH_USER = 'FETCH_USER'
 export const REDEEM_PRODUCT = 'REDEEM_PRODUCT'
-
+export const GET_COINS = 'GET_COINS'
 
 const ROOT_URL_REDEEM = 'https://cors-anywhere.herokuapp.com/https://aerolab-challenge.now.sh/redeem'
 const ROOT_URL_USER = 'https://cors-anywhere.herokuapp.com/https://aerolab-challenge.now.sh/user/'
@@ -29,12 +29,32 @@ export function reddemProductAndUpdateUser(product_id) {
     )
     .then(
       response => {
-
         dispatch( launchToast('You ve redeem the product successfully'))
       }
     )
   }
 }
+
+
+export function getCoins(){
+
+    console.log('asd')
+    const request = axios({
+    method: 'post',
+    url: `${ROOT_URL_USER}points`,
+    headers:HEADERS,
+    data: {
+      amount: 1000
+    }
+  });
+
+
+    return{
+      type: GET_COINS,
+      payload: request
+    }
+}
+
 
 
 export function fetchUser(){

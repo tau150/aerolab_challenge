@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchUser } from '../actions/user';
+import { fetchUser, getCoins } from '../actions/user';
 import styled from 'styled-components';
 import logo from '../assets/images/aerolab-logo.svg';
-import coin from '../assets/images//icons/coin.svg';
-
+import coin from '../assets/images/icons/coin.svg';
+import arrow from '../assets/images/icons/arrow-right.svg';
 
 
 const UserHeader = styled.div`
@@ -70,20 +70,25 @@ class LoggedUser extends Component{
     this.props.fetchUser()
   }
 
+	handleGetCoins=()=>{
+		this.props.getCoins()
+	}
 
 
   render(){
-    if( !this.props.user) return null;
+		console.log(this.props)
+    if( !this.props.loggedUser) return null;
 
     return(
       <UserHeader>
         <Logo src={ logo } alta='aerolab-logo' />
         <UserInfo>
 
-          <p>{this.props.user.name} </p>
+          <p>{this.props.loggedUser.name} </p>
 					<div>
-					<p className='points'> {this.props.user.points}</p>
+					<p className='points'> {this.props.points}</p>
 					<img src={coin } alt='coin'/>
+					<img onClick={ this.handleGetCoins }src={arrow} alt=""/>
 					</div>
         </UserInfo>
       </UserHeader>
@@ -94,10 +99,11 @@ class LoggedUser extends Component{
 const mapStateToProps= (state)=>{
 
   return   {
-		user: state.user.LoggedUser,
+		loggedUser: state.user.LoggedUser,
+		points: state.user.points,
 		message: state.user.redeemConfirmation
 	}
 
 }
 
-export default connect(mapStateToProps, { fetchUser } )(LoggedUser);
+export default connect(mapStateToProps, { fetchUser, getCoins } )(LoggedUser);

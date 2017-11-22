@@ -108,11 +108,9 @@ const LoadingContainer = styled.div`
 
 
 
-class Loading extends Component {
+const Loading= (props)=>  {
 
-  render(){
-
-    if(!this.props.loading) return null;
+    if(!props.loading) return null;
     return(
       <LoadingContainer>
       <div className="cs-loader-inner">
@@ -125,7 +123,7 @@ class Loading extends Component {
       </div>
       </LoadingContainer>
     )
-  }
+
 }
 
 

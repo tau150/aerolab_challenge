@@ -123,17 +123,16 @@ class Menu extends Component {
   }
 
 
-
-  handleOnClickOrder(products, criteria, order, order_name){
+  handleOnClickOrder=(products, criteria, order, order_name)=>{
     this.setState({order: order_name})
     this.props.orderProducts(products, criteria, order);
   }
 
-  handleNextPage(products, idx, chunkedProducts){
+  handleNextPage=(products, idx, chunkedProducts)=>{
     this.props.nextPage(products, idx, chunkedProducts);
   }
 
-  handlePrevPage(products, idx, chunkedProducts){
+  handlePrevPage =(products, idx, chunkedProducts)=>{
     this.props.prevPage(products, idx, chunkedProducts);
   }
 
@@ -149,23 +148,23 @@ class Menu extends Component {
         </div>
         <div className="container-badges">
           <FilterBadge className={this.state.order === 'most_recent' ? 'active' : null }
-                       onClick={()=> this.handleOnClickOrder(this.props.products, '_id', 'asc', 'most_recent')}>
+                       onClick={ this.handleOnClickOrder.bind(this, this.props.products, '_id', 'asc', 'most_recent')}>
                        Most Recent
           </FilterBadge>
           <FilterBadge className={this.state.order === 'low_price' ? 'active' : null }
-                       onClick={()=> this.handleOnClickOrder(this.props.products, 'cost', 'asc', 'low_price')}>
+                       onClick={ this.handleOnClickOrder.bind(this, this.props.products, 'cost', 'asc', 'low_price')}>
                        Low Price
           </FilterBadge>
           <FilterBadge className={this.state.order === 'highest_price' ? 'active' : null }
-                       onClick={()=> this.handleOnClickOrder(this.props.products, 'cost', 'desc', 'highest_price')}>
+                       onClick={ this.handleOnClickOrder.bind(this, this.props.products, 'cost', 'desc', 'highest_price')}>
                        Highest Price
           </FilterBadge>
         </div>
 
 
         <div className="container-arrows">
-          <img onClick={()=> this.handlePrevPage(this.props.products, this.props.idx, this.props.chunkedProducts)} src={ArrowLeft} alt=""/>
-          <img onClick={()=> this.handleNextPage(this.props.products, this.props.idx, this.props.chunkedProducts)} src={ArrowRight} alt=""/>
+          <img onClick={ this.handlePrevPage.bind(this, this.props.products, this.props.idx, this.props.chunkedProducts)} src={ArrowLeft} alt=""/>
+          <img onClick={ this.handleNextPage.bind(this, this.props.products, this.props.idx, this.props.chunkedProducts)} src={ArrowRight} alt=""/>
         </div>
       </MenuBar>
     )
