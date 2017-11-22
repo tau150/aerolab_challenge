@@ -76,7 +76,7 @@ class Product extends Component {
 
    renderRedeem(){
 
-     if(this.props.user.points - this.props.cost > 0){
+     if(this.props.user.points - this.props.cost  >= 0){
         if(this.state.show){
           this.setState({show:false})
         }else{

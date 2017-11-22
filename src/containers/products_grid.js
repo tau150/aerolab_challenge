@@ -50,7 +50,7 @@ class ProductsGrid extends Component {
     const productsList = cunckedProducts[this.props.idx].map( (product)=>{
 
         return(
-          <Product available={ this.props.user.points - product.cost > 0 ? true : false}
+          <Product available={ this.props.user.points - product.cost >= 0 ? true : false}
                    key={product._id}
                    productId= {product._id}
                    active={false}

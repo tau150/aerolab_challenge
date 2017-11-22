@@ -62,7 +62,6 @@ const Toast = (props)=> {
   return(
   <ToastContainer>
     <ToastBody>
-
     <i className='ion-ios-checkmark-outline'></i>
       <p>
         {props.notifications.message}
