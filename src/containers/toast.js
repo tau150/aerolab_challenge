@@ -11,12 +11,15 @@ const ToastContainer = styled.div `
   transition:opacity 1s linear;
 `
 
-const ToastBody = styled.div`
+const ToastBody = styled.div.attrs({
+  background: props => props.success ? '#90D696' : 'red'
+})`
+
   width: 240px;
   height: 60px;
   position:fixed;
   border-radius: 4px;
-  background: #90D696;
+  background: ${props => props.background};
   display:flex;
   justify-content:flex-start;
   align-items: center;
@@ -58,11 +61,13 @@ const Toast = (props)=> {
 
   if( !props.notifications.message ) return null;
 
+  let icon = props.status ?  <i className='ion-ios-checkmark-outline'></i> : <i className='icon ion-alert-circled'></i>  ;
+
 
   return(
   <ToastContainer>
-    <ToastBody>
-    <i className='ion-ios-checkmark-outline'></i>
+    <ToastBody success={props.status}>
+      { icon }
       <p>
         {props.notifications.message}
       </p>
@@ -71,10 +76,11 @@ const Toast = (props)=> {
   )
 }
 
-const mapStateToProps = ({notifications})=>{
+const mapStateToProps = ({notifications, status})=>{
 
   return {
-    notifications
+    notifications,
+    status
   }
 }
 

@@ -20,16 +20,19 @@ const HEADERS = {
 export function reddemProductAndUpdateUser(product_id) {
   return dispatch => {
     dispatch(redeemProduct(product_id))
-
     .then(
       response =>  {
         dispatch(fetchUser())
-
       }
     )
     .then(
       response => {
-        dispatch( launchToast('You ve redeem the product successfully'))
+        dispatch( launchToast('You ve redeem the product successfully', true))
+      }
+    )
+    .catch(
+      response => {
+        dispatch( launchToast('There was a problem, try later', false))
       }
     )
   }

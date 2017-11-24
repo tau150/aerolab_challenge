@@ -7,7 +7,7 @@ export default function toasts(state= {}, action) {
 
     case ADD_TOAST:
 
-      return  {...state, message: action.payload}
+      return  {...state, message: action.message, status: action.status}
 
     case REMOVE_TOAST:
 

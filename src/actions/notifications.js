@@ -3,9 +3,11 @@ export const REMOVE_TOAST = "REMOVE_TOAST";
 export const ADD_LOADING = "ADD_LOADING";
 export const REMOVE_LOADING = "REMOVE_LOADING";
 
-export function launchToast(message) {
+
+
+export function launchToast(message, status) {
   return dispatch => {
-    dispatch(addToast(message))
+    dispatch(addToast(message, status))
     setTimeout(()=>{
       dispatch(removeToast(message))
     }, 5000)
@@ -13,11 +15,12 @@ export function launchToast(message) {
 }
 
 
-export function addToast(message) {
+export function addToast(message, status) {
 
   return {
     type: ADD_TOAST,
-    payload: message
+    message, 
+    status
   };
 
 }
