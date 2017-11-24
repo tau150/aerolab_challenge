@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchUser, getCoins } from '../actions/user';
+import { fetchUser, getCoinsAndShowConfirmation } from '../actions/user';
 import styled from 'styled-components';
 import logo from '../assets/images/aerolab-logo.svg';
 import coin from '../assets/images/icons/coin.svg';
@@ -71,7 +71,7 @@ class LoggedUser extends Component{
   }
 
 	handleGetCoins=()=>{
-		this.props.getCoins()
+		this.props.getCoinsAndShowConfirmation()
 	}
 
 
@@ -106,4 +106,4 @@ const mapStateToProps= (state)=>{
 
 }
 
-export default connect(mapStateToProps, { fetchUser, getCoins } )(LoggedUser);
+export default connect(mapStateToProps, { fetchUser, getCoinsAndShowConfirmation } )(LoggedUser);

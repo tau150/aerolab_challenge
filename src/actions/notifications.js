@@ -9,7 +9,7 @@ export function launchToast(message, status) {
   return dispatch => {
     dispatch(addToast(message, status))
     setTimeout(()=>{
-      dispatch(removeToast(message))
+      dispatch(removeToast())
     }, 5000)
   }
 }
@@ -26,7 +26,7 @@ export function addToast(message, status) {
 }
 
 
-export function removeToast(message) {
+export function removeToast() {
 
   return {
     type: REMOVE_TOAST

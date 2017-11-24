@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-import {launchToast} from './notifications';
+import {launchToast, addLoading, removeLoading} from './notifications';
 
 
 export const FETCH_USER = 'FETCH_USER'
@@ -19,6 +19,7 @@ const HEADERS = {
 
 export function reddemProductAndUpdateUser(product_id) {
   return dispatch => {
+    dispatch( launchToast('Loading...', 'info'))
     dispatch(redeemProduct(product_id))
     .then(
       response =>  {
@@ -27,16 +28,36 @@ export function reddemProductAndUpdateUser(product_id) {
     )
     .then(
       response => {
-        dispatch( launchToast('You ve redeem the product successfully', true))
+        dispatch( launchToast('You ve redeem the product successfully', 'success'))
       }
     )
     .catch(
       response => {
-        dispatch( launchToast('There was a problem, try later', false))
+        dispatch( launchToast('There was a problem, try later', 'error'))
       }
     )
   }
 }
+
+export function getCoinsAndShowConfirmation(product_id) {
+  return dispatch => {
+    dispatch( launchToast('Loading...', 'info'))
+    dispatch(getCoins())
+
+    .then(
+      response => {
+
+        dispatch( launchToast('You ve changed your coins successfuly', 'success'))
+      }
+    )
+    .catch(
+      response => {
+        dispatch( launchToast('There was a problem, try later', 'error'))
+      }
+    )
+  }
+}
+
 
 
 export function getCoins(){

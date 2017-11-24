@@ -12,7 +12,16 @@ const ToastContainer = styled.div `
 `
 
 const ToastBody = styled.div.attrs({
-  background: props => props.success ? '#90D696' : 'red'
+  background: props =>  {
+      if(props.status === 'success'){
+        return '#90D696'
+      }else if(props.status === 'info'){
+        return '#58ACC3';
+      }else{
+        return '#CA5E57';
+      }
+
+  }
 })`
 
   width: 240px;
@@ -27,7 +36,7 @@ const ToastBody = styled.div.attrs({
   margin-top: 3%;
   margin-right: 2%;
   opacity: 0;
-  animation: 2s fadeIn;
+  animation: 3s fadeIn;
   animation-fill-mode: forwards;
   visibility: hidden;
   z-index:600;
@@ -61,26 +70,27 @@ const Toast = (props)=> {
 
   if( !props.notifications.message ) return null;
 
-  let icon = props.status ?  <i className='ion-ios-checkmark-outline'></i> : <i className='icon ion-alert-circled'></i>  ;
+  let icon = props.notifications.status ?  <i className='ion-ios-checkmark-outline'></i> : <i className='icon ion-alert-circled'></i>  ;
 
 
   return(
   <ToastContainer>
-    <ToastBody success={props.status}>
-      { icon }
+    <ToastBody status={props.notifications.status}>
+       { icon }
       <p>
         {props.notifications.message}
+   
       </p>
     </ToastBody>
     </ToastContainer>
   )
 }
 
-const mapStateToProps = ({notifications, status})=>{
+const mapStateToProps = ({notifications})=>{
 
   return {
     notifications,
-    status
+
   }
 }
 
