@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser, getCoinsAndShowConfirmation } from '../actions/user';
+import {  toggleAlert } from '../actions/notifications';
+
 import styled from 'styled-components';
 import logo from '../assets/images/aerolab-logo.svg';
 import coin from '../assets/images/icons/coin.svg';
@@ -19,9 +21,7 @@ const Logo = styled.img`
 	padding: 1rem;
 
 	@media(min-width: 992px){
-
 			margin-left: 5%;
-
 	}
 `;
 
@@ -52,6 +52,10 @@ const UserInfo = styled.div`
 		border-radius: 0 12px 12px 0;
 	}
 
+	.plus{
+		padding-left: 15%;
+		cursor:pointer;
+	}
 	.points{
 
 		flex-direction: row;
@@ -68,28 +72,30 @@ class LoggedUser extends Component{
 
   componentDidMount(){
     this.props.fetchUser()
-  }
-
-	handleGetCoins=()=>{
-		this.props.getCoinsAndShowConfirmation()
+	}
+	
+	handleAlert(){
+		console.log(this.props.showing)
+		this.props.toggleAlert(this.props.showing)
 	}
 
 
   render(){
-		console.log(this.props)
+
     if( !this.props.loggedUser) return null;
 
     return(
       <UserHeader>
         <Logo src={ logo } alta='aerolab-logo' />
         <UserInfo>
-
           <p>{this.props.loggedUser.name} </p>
 					<div>
 					<p className='points'> {this.props.points}</p>
 					<img src={coin } alt='coin'/>
-					<img onClick={ this.handleGetCoins }src={arrow} alt=""/>
+					
 					</div>
+			
+					<i className='ion-plus-round plus' onClick={ this.handleAlert.bind(this) }>  More coins</i>
         </UserInfo>
       </UserHeader>
     )
@@ -97,13 +103,14 @@ class LoggedUser extends Component{
 }
 
 const mapStateToProps= (state)=>{
-
+	
   return   {
 		loggedUser: state.user.LoggedUser,
 		points: state.user.points,
-		message: state.user.redeemConfirmation
+		message: state.user.redeemConfirmation,
+		showing: state.notifications.showing
 	}
 
 }
 
-export default connect(mapStateToProps, { fetchUser, getCoinsAndShowConfirmation } )(LoggedUser);
+export default connect(mapStateToProps, { fetchUser, toggleAlert } )(LoggedUser);

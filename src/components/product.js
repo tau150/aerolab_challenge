@@ -16,8 +16,19 @@ const ProductContainer = styled.div`
   align-items:center;
   flex-direction:column;
   position:relative;
+  z-index: 1;
+  opacity: 0;
+  animation: 3s fadeIn;
+  animation-fill-mode: forwards;
 
-
+  @keyframes fadeIn {
+  99% {
+  }
+  100% {
+    visibility: visible;
+    opacity: 1
+  }
+}
 
   .product-img{
     width: 100%;

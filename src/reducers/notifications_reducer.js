@@ -1,4 +1,4 @@
-import { ADD_TOAST, REMOVE_TOAST, ADD_LOADING, REMOVE_LOADING } from "../actions/notifications";
+import { ADD_TOAST, REMOVE_TOAST, ADD_LOADING, REMOVE_LOADING, TOGGLE_ALERT } from "../actions/notifications";
 
 export default function toasts(state= {}, action) {
 
@@ -17,6 +17,11 @@ export default function toasts(state= {}, action) {
 
       return {...state, loading: action.payload};
 
+      
+      case TOGGLE_ALERT:
+
+        return {...state,  showingAlert: action.payload};
+         
     case REMOVE_LOADING:
 
         return (state={});

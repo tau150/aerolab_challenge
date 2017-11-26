@@ -14,7 +14,22 @@ const Mask = styled.div`
   flex-direction:column;
   justify-content:center;
   align-items:center;
-    box-shadow: 2px 6px 28px -4px rgba(0,0,0,0.57);
+  box-shadow: 2px 6px 28px -4px rgba(0,0,0,0.57);
+  opacity: 0;
+  animation: 1s fadeIn;
+  animation-fill-mode: forwards;
+  visibility: hidden;
+
+
+
+  @keyframes fadeIn {
+  99% {
+  }
+  100% {
+    visibility: visible;
+    opacity: 1
+  }
+}
 
   .buy-white{
     position:absolute;

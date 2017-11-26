@@ -9,6 +9,7 @@ const ToastContainer = styled.div `
   justify-content:flex-end;
   opacity:1;
   transition:opacity 1s linear;
+  box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.4);
 `
 
 const ToastBody = styled.div.attrs({
@@ -51,16 +52,22 @@ const ToastBody = styled.div.attrs({
   }
 }
 
+
+
+
   p{
     color: #fff;
     padding-left: 10px;
 
   }
 
+
+
   i{
     color: #fff;
     padding-left:20px;
     font-size: 2rem;
+
   }
 
 `;
@@ -69,9 +76,15 @@ const ToastBody = styled.div.attrs({
 const Toast = (props)=> {
 
   if( !props.notifications.message ) return null;
-
-  let icon = props.notifications.status ?  <i className='ion-ios-checkmark-outline'></i> : <i className='icon ion-alert-circled'></i>  ;
-
+  let icon ;
+  if(props.notifications.status === 'info' ){
+    icon = null
+   
+  } else if (props.notifications.status === 'success'){
+    icon = <i className='ion-ios-checkmark-outline'></i> 
+  }else{
+    icon = <i className='ion-ios-close-outline'></i>  
+  }
 
   return(
   <ToastContainer>
@@ -79,7 +92,6 @@ const Toast = (props)=> {
        { icon }
       <p>
         {props.notifications.message}
-   
       </p>
     </ToastBody>
     </ToastContainer>

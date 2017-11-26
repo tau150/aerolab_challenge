@@ -2,6 +2,7 @@ export const ADD_TOAST = "ADD_TOAST";
 export const REMOVE_TOAST = "REMOVE_TOAST";
 export const ADD_LOADING = "ADD_LOADING";
 export const REMOVE_LOADING = "REMOVE_LOADING";
+export const TOGGLE_ALERT = "TOGGLE_ALERT";
 
 
 
@@ -10,7 +11,7 @@ export function launchToast(message, status) {
     dispatch(addToast(message, status))
     setTimeout(()=>{
       dispatch(removeToast())
-    }, 5000)
+    }, 8000)
   }
 }
 
@@ -32,8 +33,18 @@ export function removeToast() {
     type: REMOVE_TOAST
 
   };
-
 }
+
+
+export function toggleAlert(showing) {
+
+    return {
+      type: TOGGLE_ALERT,
+       payload: !showing
+
+    };
+  
+  }
 
 
 export function addLoading() {

@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-import { addLoading, removeLoading } from './notifications'
+import { addLoading, removeLoading, launchToast } from './notifications'
 import _ from 'lodash';
 
 export const FETCH_PRODUCTS = 'FETCH_PRODUCTS'
@@ -25,6 +25,11 @@ export function fetchProductsWithLoading(){
         response => {
           dispatch(removeLoading())
         }   
+    )
+    .catch(
+      response =>{
+        dispatch( launchToast('There was a problem, try later', 'error'))
+      }
     )
   }
 }
@@ -70,9 +75,6 @@ export function prevPage(products, idx, chunkedProducts){
   }
 
 }
-
-
-
 
 
 export function fetchProducts(){

@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import Toast from '../containers/toast'
 import { fetchProductsWithLoading, removeLoading } from '../actions/products';
 import Loading from './loading';
+import Alert from './alert'
 
 const AppContainer = styled.div`
   font-family: 'Roboto', sans-serif;
@@ -16,7 +17,7 @@ const AppContainer = styled.div`
 
 class App extends Component {
 
-
+  
     componentWillMount(){
       this.props.fetchProductsWithLoading();
     }
@@ -24,6 +25,7 @@ class App extends Component {
   render() {
     return (
     <AppContainer>
+      <Alert />
       <Loading />
       <Toast />
       <LoggedUser />
