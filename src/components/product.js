@@ -6,6 +6,7 @@ import MissingBadge from './missing_badge';
 import { connect } from 'react-redux';
 import ReedemMask from '../containers/redeem_mask';
 import { removeLoading } from '../actions/notifications'
+import { checkAndAddFavourites } from '../actions/products'
 
 
 
@@ -73,6 +74,17 @@ const ProductContainer = styled.div`
 
 `;
 
+const Icon = styled.i`
+position:absolute;
+top: 5%;
+left: 10%;
+font-size: 40px;
+z-index: 2000;
+cursor: pointer;
+color: ${props => props.favourite ? 'violet' :  '#F7F8E0'};
+`
+
+
 
 class Product extends Component {
   constructor(props){
@@ -84,16 +96,20 @@ class Product extends Component {
 
   }
 
+  handleOnClickFavourites = (product_id)=>{
+    this.props.checkAndAddFavourites(product_id)
+  }
 
-   renderRedeem=()=>{
+  checkFavourite= ()=>{
+    return this.props.favourites.find(elem => elem._id === this.props.productId )
+  }
 
-     if(this.props.user.points - this.props.cost  >= 0){
-        if(this.state.show){
-          this.setState({show:false})
-        }else{
-          this.setState({show:true})
-        }
+   renderRedeem=(showing)=>{
 
+     if(this.props.user.points - this.props.cost  >= 0) {
+          this.setState({show: showing})
+     }else{
+         this.setState({show: false})
      }
   }
 
@@ -118,11 +134,15 @@ class Product extends Component {
   return(
 
     <ProductContainer className='product'
-                      onMouseEnter={ this.renderRedeem }
-                      onMouseLeave={this.renderRedeem }>
+                      onMouseEnter={ this.renderRedeem.bind(this, true) }
+                      onMouseLeave={ this.renderRedeem.bind(this, false) }
+                      onMouseOver= { this.renderRedeem.bind(this, true) }
+                      >
+                  
       { missingBadge }
       { buyIcon }
       { redeem }
+      <Icon className='ion-heart' favourite={this.checkFavourite()} onClick={ this.handleOnClickFavourites.bind(this, this.props.productId)}></Icon>
       <img className='product-img' src={this.props.img} alt={this.props.name}/>
       <span></span>
       <p>{this.props.category}</p>
@@ -134,9 +154,10 @@ class Product extends Component {
 
 const mapStateToProps = (state)=>{
   return {
-    user:state.user.LoggedUser
+    user:state.user.LoggedUser,
+    favourites: state.products.favourites
   }
 }
 
 
-export default connect(mapStateToProps, {removeLoading}) (Product);
+export default connect(mapStateToProps, {removeLoading, checkAndAddFavourites}) (Product);

@@ -40,7 +40,7 @@ const ToastBody = styled.div.attrs({
   animation: 3s fadeIn;
   animation-fill-mode: forwards;
   visibility: hidden;
-  z-index:600;
+  z-index:4000;
 
 
   @keyframes fadeIn {
@@ -102,7 +102,6 @@ const mapStateToProps = ({notifications})=>{
 
   return {
     notifications,
-
   }
 }
 

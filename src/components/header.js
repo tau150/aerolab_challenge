@@ -9,6 +9,7 @@ const Main = styled.div`
   background-size:cover;
   background-position: 90% 100%;
   height: 300px;
+  margin-top:15vh;
 
   @media(min-width: 768px){
       height: 450px;

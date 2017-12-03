@@ -4,10 +4,11 @@ import LoggedUser from '../containers/logged_user';
 import Header from './header';
 import ProductsGrid from '../containers/products_grid';
 import styled from 'styled-components';
-import Toast from '../containers/toast'
-import { fetchProductsWithLoading, removeLoading } from '../actions/products';
+import Toast from '../components/toast'
+import { fetchProductsWithLoading } from '../actions/products';
 import Loading from './loading';
 import Alert from './alert'
+import Lock from './lock'
 
 const AppContainer = styled.div`
   font-family: 'Roboto', sans-serif;
@@ -26,11 +27,11 @@ class App extends Component {
     return (
     <AppContainer>
       <Alert />
+      <Lock showingLock={true}/>
       <Loading />
       <Toast />
       <LoggedUser />
       <Header />
-
       <ProductsGrid />
     </AppContainer>
     );

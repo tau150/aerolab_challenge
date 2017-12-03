@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchUser, getCoinsAndShowConfirmation } from '../actions/user';
+import { fetchUser } from '../actions/user';
 import {  toggleAlert } from '../actions/notifications';
-
 import styled from 'styled-components';
 import logo from '../assets/images/aerolab-logo.svg';
 import coin from '../assets/images/icons/coin.svg';
-import arrow from '../assets/images/icons/arrow-right.svg';
 
 
 const UserHeader = styled.div`
 	display: flex;
   justify-content: space-between;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 15vh;
+	background: #fff;
   align-content:center;
 	z-index: 300;
 	box-shadow: 0px 10px 24px -9px rgba(0,0,0,0.75);
@@ -27,7 +30,7 @@ const Logo = styled.img`
 
 const UserInfo = styled.div`
 	padding: 1rem;
-  width: 40%;
+  width: 60%;
   display: flex;
   justify-content: center;
  	align-items: center;
@@ -40,27 +43,29 @@ const UserInfo = styled.div`
 		height: 20px;
 		margin-left: 10px;
 		padding: 5px 10px;
-
 		border-radius:15px;
 		align-items:center;
+
 	}
 	img{
-
 		width: 20px;
 		margin-left: 5px;
-
 		border-radius: 0 12px 12px 0;
+
 	}
 
 	.plus{
 		padding-left: 15%;
 		cursor:pointer;
+		text-align:center;
+		margin-right: 1%;
+		
 	}
 	.points{
-
 		flex-direction: row;
 		align-items: center;
 		justify-content:center;
+		
 		}
 	}
 
@@ -75,7 +80,6 @@ class LoggedUser extends Component{
 	}
 	
 	handleAlert(){
-		console.log(this.props.showing)
 		this.props.toggleAlert(this.props.showing)
 	}
 
@@ -90,12 +94,11 @@ class LoggedUser extends Component{
         <UserInfo>
           <p>{this.props.loggedUser.name} </p>
 					<div>
-					<p className='points'> {this.props.points}</p>
-					<img src={coin } alt='coin'/>
-					
+						<p className='points'> {this.props.points}</p>
+						<img src={coin } alt='coin'/>
 					</div>
-			
-					<i className='ion-plus-round plus' onClick={ this.handleAlert.bind(this) }>  More coins</i>
+						<i className='ion-plus-round plus' onClick={ this.handleAlert.bind(this) }></i>
+						<p>Coins</p>
         </UserInfo>
       </UserHeader>
     )

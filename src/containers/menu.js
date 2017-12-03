@@ -30,16 +30,44 @@ const MenuBar = styled.div`
     .container-sort-description{
       width: 100%;
       display:flex;
-
       flex-direction:column;
       align-items:center;
     }
 
+
+    .container-filter{
+      display:flex;
+      width: 100%;
+      flex-direction: column;
+      justify-content: center;
+      align-items:center;
+      margin-bottom: 5%;
+    }
+
+    .categories-select{
+      display: flex;
+      justify-content: center;
+    }
+
+   
+    .categories-select select{
+      text-align:center;
+      padding: 5px 8px;
+      width: 80%;
+      color: #777;
+      background: #eaeaea;
+      border-radius: 15px;
+      font-size: 0.7rem;
+      cursor: pointer;
+      border: none;
+    }
+ 
    .container-badges, .container-arrows{
       width: 100%;
       display:flex;
       justify-content: center;
     }
+
 
   @media(min-width: 550px){
     justify-content: space-around;
@@ -60,45 +88,63 @@ const MenuBar = styled.div`
 
 
 
-  @media(min-width: 768px){
+    @media(min-width: 768px){
 
-      justify-content: space-around;
+        justify-content: space-around;
 
-      p{
+        p{
 
-        font-size: 1rem;
-      }
+          font-size: 1rem;
+        }
 
-       .container-sort-description{
-         width: 30%;
-         display:flex;
-         flex-direction:row;
-         justify-content: center;
+        .container-sort-description{
+          width: 30%;
+          display:flex;
+          flex-direction:row;
+          justify-content: center;
 
-         p{
-           margin: 10px;
-         }
+          p{
+            margin: 10px;
+          }
 
-       }
-       .container-badges{
-         width: 50%;
-         display:flex;
-         justify-content: flex-start;
+        }
+          .container-filter{
+            display:flex;
+            width: 100%;
+            flex-direction: row;
+            justify-content: flex-start;
+            margin-left: 15%;
+            align-items:center;
+          }
 
-       }
-       .container-arrows{
-         width: 50%;
-         display:flex;
-         justify-content: center;
-       }
+        .container-badges{
+          width: 50%;
+          display:flex;
+          justify-content: flex-start;
 
-       .container-arrows{
-          width: 20%;
+        }
+        .container-arrows{
+          width: 50%;
           display:flex;
           justify-content: center;
         }
 
+        .container-arrows{
+            width: 20%;
+            display:flex;
+            justify-content: center;
 
+            img{
+              cursor: pointer;
+            }
+          }
+    }
+
+    @media(min-width: 992px){
+      .container-sort-description p{
+          margin-left: auto;
+        }
+    }
 
   }
 `;
@@ -108,9 +154,22 @@ const FilterBadge = styled.p`
   background: #eaeaea;
   display: inline-block;
   padding: 5px 8px;
-  border-radius: 15px;
+  border-radius: 15px;  
   font-size: 0.7rem;
   cursor: pointer;
+
+  opacity: 0;
+  animation: 2s fadeIn;
+  animation-fill-mode: forwards;
+
+  @keyframes fadeIn {
+    99% {
+    }
+    100% {
+      visibility: visible;
+      opacity: 1
+    }
+  }
 
   &:hover{
     box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.4);
@@ -119,19 +178,27 @@ const FilterBadge = styled.p`
 `;
 
 
+
 class Menu extends Component {
   constructor(props){
     super(props);
 
     this.state={
-      order: 'most_recent'
+      order: 'most_recent',
+      showingFavourites: false,
     }
   }
 
 
   handleOnClickOrder=(products, criteria, order, order_name)=>{
-    this.setState({order: order_name})
+    this.setState({order: order_name, showingFavourites:false})
     this.props.orderProducts(products, criteria, order);
+  }
+
+  handleOnClickFavourites=(products, criteria, order, order_name)=>{
+    this.setState({order: order_name, showingFavourites: true} )
+    this.props.orderProducts(products, criteria, order)
+     
   }
 
   handleNextPage=(products, idx, chunkedProducts)=>{
@@ -142,14 +209,23 @@ class Menu extends Component {
     this.props.prevPage(products, idx, chunkedProducts);
   }
 
+
   render(){
 
+    let menuDescription;
+
+    if( this.state.showingFavourites && this.props.favourites.length > 0){
+      menuDescription = (<p> { Math.floor(( this.props.idx + 1) * this.props.favourites.length / this.props.favouritesDivider )} of {this.props.favourites.length} products</p>)
+    }else{
+      menuDescription = (<p> { Math.floor((( this.props.idx + 1) * this.props.products.length / this.props.divider))} of {this.props.products.length} products</p>)
+    }
+    
     if ( ! this.props.products ) return null;
 
     return(
       <MenuBar>
         <div className="container-sort-description">
-          <p> {(( this.props.idx + 1) * 16)} of {this.props.products.length} products</p>
+          {menuDescription}
           <p>Sort by: </p>
         </div>
         <div className="container-badges">
@@ -165,13 +241,18 @@ class Menu extends Component {
                        onClick={ this.handleOnClickOrder.bind(this, this.props.products, 'cost', 'desc', 'highest_price')}>
                        Highest Price
           </FilterBadge>
-        </div>
+          { this.props.favourites.length > 0 ? 
+          (<FilterBadge className={this.state.order === 'favourites' ? 'active' : null }
+                       onClick={  this.handleOnClickFavourites.bind(this, this.props.products, 'favourites', 'desc', 'favourites')}>
+                       My Favourites
+          </FilterBadge>) : null   }
+         
+          </div>
 
-
-        <div className="container-arrows">
-          <img onClick={ this.handlePrevPage.bind(this, this.props.products, this.props.idx, this.props.chunkedProducts)} src={ArrowLeft} alt=""/>
-          <img onClick={ this.handleNextPage.bind(this, this.props.products, this.props.idx, this.props.chunkedProducts)} src={ArrowRight} alt=""/>
-        </div>
+          <div className="container-arrows">
+            <img onClick={ this.handlePrevPage.bind(this, this.props.products, this.props.idx, this.props.chunkedProducts)} src={ArrowLeft} alt=""/>
+            <img onClick={ this.handleNextPage.bind(this, this.props.products, this.props.idx, this.props.chunkedProducts)} src={ArrowRight} alt=""/>
+          </div>
       </MenuBar>
     )
   }
@@ -180,7 +261,8 @@ class Menu extends Component {
 const mapStateToProps = (state)=>{
   return {
     products: state.products.products,
-    idx: state.products.idx
+    idx: state.products.idx,
+    favourites: state.products.favourites
   }
 }
 

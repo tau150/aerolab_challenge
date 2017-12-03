@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import coin from '../assets/images//icons/coin.svg';
 import buyWhite from '../assets/images/icons/buy-white.svg';
-import {redeemProduct, reddemProductAndUpdateUser } from '../actions/user';
+import {reddemProductAndUpdateUser } from '../actions/user';
+
 
 const Mask = styled.div`
   width: 100%;
@@ -38,6 +39,10 @@ const Mask = styled.div`
     width: 50px;
   }
 
+  .favourite-icon{
+    color: ${props => props.favourite ? 'violet' :  '#fff'};
+  }
+
   a{
     color: #777;
     text-decoration: none;
@@ -60,29 +65,30 @@ const Mask = styled.div`
 
 `
 
-class RedeemMask extends Component {
 
+
+class RedeemMask extends Component {
 
   handleOnClickRedeem= (product_id)=>{
     this.props.reddemProductAndUpdateUser(product_id)
   }
 
+  
+
   render() {
     return(
       <Mask>
+
         <div>
           <p> {this.props.cost}</p>
           <img src={coin} alt='coin' />
         </div>
         <img className='buy-white' src={buyWhite} alt='Buy' />
         <a onClick={ this.handleOnClickRedeem.bind(this, this.props.productId)}>Redeem now !</a>
-
         <p>{this.props._id}</p>
       </Mask>
     )
   }
 }
 
-
-
-export default connect(null, {redeemProduct, reddemProductAndUpdateUser}) (RedeemMask);
+export default connect(null, {reddemProductAndUpdateUser}) (RedeemMask);

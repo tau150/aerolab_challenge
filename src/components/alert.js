@@ -1,4 +1,4 @@
-import React, {Component}  from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { toggleAlert } from '../actions/notifications';
@@ -6,38 +6,39 @@ import { getCoinsAndShowConfirmation } from '../actions/user';
 
 const AlertContainer = styled.div `
 
-  display: flex;
-  height: 100%;
-  position: absolute;
-  align-items:flex-start;
-  width: 100%;
-  background: rgba(0,0,0,0.3);
-  justify-content:center;
-  transition:opacity 1s linear;
-  animation: 1s fadeIn;
-  animation-fill-mode: forwards;
-  visibility: hidden;
-  opacity: 0;
-  z-index: 3000;
+    display: flex;
+    height: 100%;
+    position: absolute;
+    align-items:center;
+    width: 100%;
+    background: rgba(0,0,0,0.3);
+    justify-content:center;
+    transition:opacity 1s linear;
+    animation: 1s fadeIn;
+    animation-fill-mode: forwards;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 3000;
 
 
-  @keyframes fadeIn {
-  99% {
+    @keyframes fadeIn {
+    99% {
+    }
+    100% {
+        visibility: visible;
+        opacity: 1
+    }
   }
-  100% {
-    visibility: visible;
-    opacity: 1
-  }
-  
 `
 
 const AlertBody = styled.div `
     width: 80%;
     background: #fff;
     padding: 1% 3%;
+    position:fixed;
+    top: 35vh;
     display: flex;
     justify-content: flex-start;
-    margin-top: 30vh;
     heigth: 30vh;
     flex-direction: column;
     box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.4);
@@ -52,8 +53,8 @@ const AlertBody = styled.div `
             button{
                 width: 30%;
              }
-
-        @media( min-width: 768px){
+    }
+    @media( min-width: 768px){
 
             width: 40%;
 
@@ -89,22 +90,18 @@ const AlertBody = styled.div `
     }
         
     }
+  }  
 `
 
 const Alert = (props) =>{
 
-
      const handleAlert= (showing)=>{
-         
             props.toggleAlert(showing);
         }
 
     const handleGetCoins=(showing)=>{
         props.getCoinsAndShowConfirmation(showing)
-		
 	}
-
-
 
         if(!props.showing) return null;
 
@@ -127,7 +124,5 @@ const Alert = (props) =>{
             showing: state.notifications.showingAlert
             }
         }
-
-
 
 export default connect(mapStateToProps, {toggleAlert, getCoinsAndShowConfirmation })(Alert)

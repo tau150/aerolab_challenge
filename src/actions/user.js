@@ -1,7 +1,6 @@
 
 import axios from 'axios';
-import {launchToast, addLoading, removeLoading, toggleAlert} from './notifications';
-
+import {launchToast, toggleAlert, toggleLock} from './notifications';
 
 export const FETCH_USER = 'FETCH_USER'
 export const REDEEM_PRODUCT = 'REDEEM_PRODUCT'
@@ -19,7 +18,7 @@ const HEADERS = {
 
 export function reddemProductAndUpdateUser(product_id) {
   return dispatch => {
-
+    dispatch(toggleLock(true))
     dispatch( launchToast('Loading...', 'info'))
     dispatch(redeemProduct(product_id))
     .then(
@@ -32,6 +31,7 @@ export function reddemProductAndUpdateUser(product_id) {
         dispatch( launchToast('You ve redeem the product successfully', 'success'))
       }
     )
+
     .catch(
       response => {
         dispatch( launchToast('There was a problem, try later', 'error'))
@@ -41,14 +41,16 @@ export function reddemProductAndUpdateUser(product_id) {
 }
 
 export function getCoinsAndShowConfirmation(showing) {
-  return dispatch => {
+  return (dispatch, getState) => {
+
     dispatch( toggleAlert(showing))
     dispatch( launchToast('Loading...', 'info'))
     dispatch(getCoins())
-
+    
     .then(
       response => {
-        dispatch( launchToast('You ve changed your coins successfuly', 'success'))
+        dispatch( launchToast('You ve changed your coins successfuly', 'success'));
+        dispatch(fetchUser())
       }
     )
     .catch(
@@ -59,11 +61,7 @@ export function getCoinsAndShowConfirmation(showing) {
   }
 }
 
-
-
 export function getCoins(){
-
-    console.log('asd')
     const request = axios({
     method: 'post',
     url: `${ROOT_URL_USER}points`,
@@ -81,7 +79,6 @@ export function getCoins(){
 }
 
 
-
 export function fetchUser(){
 
     const request = axios.get( `${ROOT_URL_USER}me`, { headers: HEADERS});
@@ -94,7 +91,6 @@ export function fetchUser(){
 
 export function redeemProduct(product_id){
 
-
   const request = axios({
   method: 'post',
   url: ROOT_URL_REDEEM,
@@ -104,7 +100,7 @@ export function redeemProduct(product_id){
   }
 });
 
-    return{
+  return{
       type: REDEEM_PRODUCT,
       payload: request
     }
