@@ -17,4 +17,9 @@ App made for Aerolab challenge where you can see and redeem some catalog's produ
 
 ### Live 
 
-https://aerolab-catalog-svfpcanbia.now.sh/
+aerolab-catalog.now.sh
+
+
+### Favourites implementation
+
+Implementation of favourites was made using local storage to simulate the backend feature.

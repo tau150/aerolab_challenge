@@ -7,6 +7,7 @@ import logo from '../assets/images/aerolab-logo.svg';
 import coin from '../assets/images/icons/coin.svg';
 
 
+
 const UserHeader = styled.div`
 	display: flex;
   justify-content: space-between;
@@ -54,18 +55,24 @@ const UserInfo = styled.div`
 
 	}
 
-	.plus{
-		padding-left: 15%;
+	p{
+		padding-left: 5%;
 		cursor:pointer;
 		text-align:center;
 		margin-right: 1%;
+		font-size: 1.2rem;
+				
+		span{
+			font-weigth:bold;
+			color: #2DDBFC;
+		}
 		
 	}
 	.points{
 		flex-direction: row;
 		align-items: center;
 		justify-content:center;
-		
+
 		}
 	}
 
@@ -97,8 +104,7 @@ class LoggedUser extends Component{
 						<p className='points'> {this.props.points}</p>
 						<img src={coin } alt='coin'/>
 					</div>
-						<i className='ion-plus-round plus' onClick={ this.handleAlert.bind(this) }></i>
-						<p>Coins</p>
+						<p onClick={ this.handleAlert.bind(this)}> <span>+</span> Coins</p>
         </UserInfo>
       </UserHeader>
     )

@@ -10,6 +10,7 @@ import { checkAndAddFavourites } from '../actions/products'
 
 
 
+
 const ProductContainer = styled.div`
   border: 1px solid #eaeaea;
   background: #fff;
@@ -79,9 +80,9 @@ position:absolute;
 top: 5%;
 left: 10%;
 font-size: 40px;
-z-index: 2000;
+z-index: 12000;
 cursor: pointer;
-color: ${props => props.favourite ? 'violet' :  '#F7F8E0'};
+color: ${props => props.favourite ? '#FF0000' :  'rgba(255,76,76,0.3)'};
 `
 
 
@@ -142,6 +143,7 @@ class Product extends Component {
       { missingBadge }
       { buyIcon }
       { redeem }
+    
       <Icon className='ion-heart' favourite={this.checkFavourite()} onClick={ this.handleOnClickFavourites.bind(this, this.props.productId)}></Icon>
       <img className='product-img' src={this.props.img} alt={this.props.name}/>
       <span></span>
