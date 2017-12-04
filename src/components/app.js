@@ -26,9 +26,9 @@ class App extends Component {
   render() {
     return (
     <AppContainer>
+      <Loading />
       <Alert />
       <Lock showingLock={true}/>
-      <Loading />
       <Toast />
       <LoggedUser />
       <Header />

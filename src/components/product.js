@@ -80,9 +80,8 @@ position:absolute;
 top: 5%;
 left: 10%;
 font-size: 40px;
-z-index: 12000;
 cursor: pointer;
-color: ${props => props.favourite ? '#FF0000' :  'rgba(255,76,76,0.3)'};
+color: ${props => props.favourite ? '#FF0000' :  '#FBD4CE'};
 `
 
 
