@@ -145,6 +145,7 @@ export function addToFavourites(favourites){
 
   localStorage.setItem('favourites', JSON.stringify(favourites))
 
+
   return{
     type: ADD_TO_FAVOURITES,
     payload: favourites

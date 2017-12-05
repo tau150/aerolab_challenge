@@ -89,7 +89,6 @@ color: ${props => props.favourite ? '#FF0000' :  '#FBD4CE'};
 class Product extends Component {
   constructor(props){
     super(props);
-
     this.state={
       show: false
     }

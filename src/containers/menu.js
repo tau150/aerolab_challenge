@@ -192,14 +192,12 @@ class Menu extends Component {
 
 
   handleOnClickOrder=(products, criteria, order, order_name)=>{
-    this.setState({order: order_name, showingFavourites:false})
+    if( criteria === 'favourites' ){
+      this.setState({order: order_name, showingFavourites: true})
+    }else{
+      this.setState({order: order_name, showingFavourites:false})
+    }
     this.props.orderProducts(products, criteria, order, order_name);
-  }
-
-  handleOnClickFavourites=(products, criteria, order, order_name)=>{
-    this.setState({order: order_name, showingFavourites: true} )
-    this.props.orderProducts(products, criteria, order)
-     
   }
 
   handleNextPage=(products, idx, chunkedProducts)=>{
@@ -223,6 +221,8 @@ class Menu extends Component {
     
     if ( ! this.props.products ) return null;
 
+    
+
     return(
       <MenuBar>
         <div className="container-sort-description">
@@ -244,7 +244,7 @@ class Menu extends Component {
           </FilterBadge>
           { this.props.favourites.length > 0 ? 
           (<FilterBadge className={this.state.order === 'favourites' ? 'active' : null }
-                       onClick={  this.handleOnClickFavourites.bind(this, this.props.products, 'favourites', 'desc', 'favourites')}>
+                       onClick={  this.handleOnClickOrder.bind(this, this.props.products, 'favourites', 'desc', 'favourites')}>
                        My Favourites
           </FilterBadge>) : null   }
          
@@ -263,7 +263,7 @@ const mapStateToProps = (state)=>{
   return {
     products: state.products.products,
     idx: state.products.idx,
-    favourites: state.products.favourites
+    favourites: state.products.favourites,
   }
 }
 
