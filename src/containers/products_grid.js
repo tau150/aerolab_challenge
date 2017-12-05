@@ -41,7 +41,7 @@ const Grid = styled.div`
 class ProductsGrid extends Component {
 
 
-  componentWillMount(){
+  componentDidMount(){
     this.props.getFavourites()
 
   }

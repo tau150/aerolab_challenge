@@ -19,7 +19,7 @@ const AppContainer = styled.div`
 class App extends Component {
 
   
-    componentWillMount(){
+    componentDidMount(){
       this.props.fetchProductsWithLoading();
     }
 
