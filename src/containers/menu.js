@@ -230,7 +230,7 @@ class Menu extends Component {
           <p>Sort by: </p>
         </div>
         <div className="container-badges">
-          <FilterBadge className={this.state.order === 'most_recent' ? 'active' : null }
+          <FilterBadge className={ this.state.order === 'most_recent'  ? 'active' : null }
                        onClick={ this.handleOnClickOrder.bind(this, this.props.products, '_id', 'asc', 'most_recent')}>
                        Most Recent
           </FilterBadge>
@@ -267,4 +267,4 @@ const mapStateToProps = (state)=>{
   }
 }
 
-export default connect(mapStateToProps, { fetchProducts, orderProducts, fetchProductsWithLoading , nextPage, prevPage}) (Menu)
+export default connect(mapStateToProps, { orderProducts, fetchProductsWithLoading , nextPage, prevPage}) (Menu)

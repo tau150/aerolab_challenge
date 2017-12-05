@@ -1,27 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-// import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { createStore, applyMiddleware, compose } from 'redux';
 import ReduxPromise from 'redux-promise';
 import thunk from 'redux-thunk';
 import App from './components/app';
 import reducers from './reducers';
 
-const createStoreWithMiddleware = applyMiddleware(ReduxPromise, thunk)(createStore);
+// const createStoreWithMiddleware = applyMiddleware(ReduxPromise, thunk)(createStore);
+
+
+const composeEnhancers =
+window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?   
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+    // options like actionSanitizer, stateSanitizer
+  }) : compose;
+const enhancer = composeEnhancers(
+applyMiddleware(ReduxPromise, thunk),
+// other store enhancers if any
+);
+
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
+  <Provider store={createStore(reducers, enhancer)}>
 
     <App />
 
   </Provider>
   , document.querySelector('#root'));
 
-//   <BrowserRouter>
-//   <div>
-//     <Switch>
-//       <Route path='/' component={App} />
-//     </Switch>
-//   </div>
-// </BrowserRouter>
+
