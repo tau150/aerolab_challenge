@@ -157,10 +157,11 @@ const FilterBadge = styled.p`
   border-radius: 15px;  
   font-size: 0.7rem;
   cursor: pointer;
-
   opacity: 0;
   animation: 2s fadeIn;
   animation-fill-mode: forwards;
+  pointer-events: ${props => props.className === 'active' ? 'none' :  null};
+
 
   @keyframes fadeIn {
     99% {
@@ -192,7 +193,7 @@ class Menu extends Component {
 
   handleOnClickOrder=(products, criteria, order, order_name)=>{
     this.setState({order: order_name, showingFavourites:false})
-    this.props.orderProducts(products, criteria, order);
+    this.props.orderProducts(products, criteria, order, order_name);
   }
 
   handleOnClickFavourites=(products, criteria, order, order_name)=>{

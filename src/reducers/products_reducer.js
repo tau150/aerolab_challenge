@@ -8,7 +8,7 @@ export default function(state =  {favourites:[] }, action){
         return { ...state, products: action.payload.data, idx:0 }
 
     case ORDER_PRODUCTS:
-        return { ...state, products: action.payload, criteria: action.criteria  };
+        return { ...state, products: action.payload, criteria: action.criteria , order_name: action.order_name };
 
     case NEXT_PAGE:
         return {...state, products: action.products, idx:action.idx}

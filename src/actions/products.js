@@ -85,14 +85,15 @@ export function fetchProducts(){
 }
 
 
-export function orderProducts(products, criteria, order){
+export function orderProducts(products, criteria, order, order_name){
     let  productsMerged = [].concat.apply([], products);
     let sortedList =  _.orderBy(productsMerged, criteria , order);
 
     return{
       type: ORDER_PRODUCTS,
       payload: sortedList,
-      criteria: criteria
+      criteria,
+      order_name
     }
 
 }

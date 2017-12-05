@@ -44,7 +44,7 @@ class ProductsGrid extends Component {
   componentDidMount(){
     this.props.getFavourites()
 
-  }
+  } 
 
 
   render(){
@@ -109,6 +109,7 @@ const mapStateToProps = (state)=>{
     idx: state.products.idx,
     favourites: state.products.favourites,
     criteria: state.products.criteria,
+    order_name: state.products.order_name,
   }
 }
 
