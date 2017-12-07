@@ -23,7 +23,7 @@ export default function(state =  {favourites:[] }, action){
         return {...state, favourites: action.payload }
 
     case ADD_TO_FAVOURITES:
-        return {...state, favourites: action.payload }
+        return {...state, favourites: action.payload, order: action.order }
 
     default:
       return state;

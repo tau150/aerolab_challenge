@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchProducts, orderProducts, fetchProductsWithLoading, nextPage, prevPage } from '../actions/products';
+import { orderProducts, fetchProductsWithLoading, nextPage, prevPage } from '../actions/products';
 import styled from 'styled-components';
 import ArrowRight from '../assets/images/icons/arrow-right.svg'
 import ArrowLeft from '../assets/images/icons/arrow-left.svg'
@@ -188,18 +188,20 @@ class Menu extends Component {
       order: 'most_recent',
       showingFavourites: false,
     }
+
   }
 
 
   handleOnClickOrder=(products, criteria, order, order_name)=>{
     if( criteria === 'favourites' ){
       this.setState({order: order_name, showingFavourites: true})
-    }else{
+    }else{  
+      // use prevState here
       this.setState({order: order_name, showingFavourites:false})
     }
     this.props.orderProducts(products, criteria, order, order_name);
   }
-
+  
   handleNextPage=(products, idx, chunkedProducts)=>{
     this.props.nextPage(products, idx, chunkedProducts);
   }
@@ -208,6 +210,15 @@ class Menu extends Component {
     this.props.prevPage(products, idx, chunkedProducts);
   }
 
+  handleNoFavourites(){
+    if( this.state.order === 'favourites' && this.props.favourites.length === 0){
+      this.handleOnClickOrder(this.props.products, '_id', 'asc', 'most_recent')
+    }
+  }
+
+  componentDidUpdate(){
+    this.handleNoFavourites()
+  }
 
   render(){
 
@@ -230,7 +241,7 @@ class Menu extends Component {
           <p>Sort by: </p>
         </div>
         <div className="container-badges">
-          <FilterBadge className={ this.state.order === 'most_recent'  ? 'active' : null }
+          <FilterBadge className={ this.state.order === 'most_recent' ? 'active' : null }
                        onClick={ this.handleOnClickOrder.bind(this, this.props.products, '_id', 'asc', 'most_recent')}>
                        Most Recent
           </FilterBadge>
