@@ -196,7 +196,7 @@ class Menu extends Component {
     if( criteria === 'favourites' ){
       this.setState({order: order_name, showingFavourites: true})
     }else{  
-      // use prevState here
+  
       this.setState({order: order_name, showingFavourites:false})
     }
     this.props.orderProducts(products, criteria, order, order_name);

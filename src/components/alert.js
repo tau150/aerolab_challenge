@@ -13,7 +13,7 @@ const AlertContainer = styled.div `
     width: 100%;
     background: rgba(0,0,0,0.3);
     justify-content:center;
-    transition:opacity 1s linear;
+    transition: opacity 1s linear;
     animation: 1s fadeIn;
     animation-fill-mode: forwards;
     visibility: hidden;
