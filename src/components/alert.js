@@ -34,12 +34,11 @@ const AlertContainer = styled.div `
 const AlertBody = styled.div `
     width: 80%;
     background: #fff;
-    padding: 1% 3%;
     position:fixed;
     top: 35vh;
     display: flex;
     justify-content: flex-start;
-    heigth: 30vh;
+    heigth: 50vh;
     flex-direction: column;
     box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.4);
     z-index: 3000;
@@ -47,6 +46,15 @@ const AlertBody = styled.div `
   
     h5{
         margin-bottom: 0;
+        padding: 1% 3%;
+    }
+
+    h3{
+        padding: 1% 3%;
+    }
+
+    p{
+        padding: 1% 3%;
     }
 
     @media( min-width: 576px){
@@ -71,21 +79,22 @@ const AlertBody = styled.div `
         justify-content: space-around;
 
         button{
-            margin: 5%;
-            width: 40%;
+            margin-top:5%;
+            width: 50%;
             border: none;
             border-radius: 0;
             padding: 3% 1%;
             color: #fff;
             box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.4);
+            cursor: pointer;
         }
 
         button.acept{
-            background: #90D696;
+            background: #2DDBFC;
         }
 
         button.cancel{
-            background: #CA5E57;
+            background: #777;
         }
     }
         
