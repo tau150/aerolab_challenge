@@ -10,13 +10,13 @@ const LoadingContainer = styled.div`
   min-height: 100%;
   position:absolute;
   background: rgb(10, 212, 250);
-  top: 0;
+  top: -15vh;
   left:0;
   bottom:0;
-  right0;
+  right:0;
   display: flex;
   justify-content: center;
-  z-index: 3000;
+  z-index: 300000;
 
 
 .cs-loader-inner {

@@ -144,15 +144,10 @@ export function checkFavourite(product){
 export function addToFavourites(favourites){
  
   localStorage.setItem('favourites', JSON.stringify(favourites))
-  // let order;
-  // if (favourites.length === 0){
-  //    order= 'most_recent'
-  // }
-  
+
   return{
     type: ADD_TO_FAVOURITES,
     payload: favourites,
-    // order
   }
     
 }

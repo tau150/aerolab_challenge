@@ -17,7 +17,7 @@ const UserHeader = styled.div`
 	height: 15vh;
 	background: #fff;
   align-content:center;
-	z-index: 300;
+	z-index: 0;
 	box-shadow: 0px 10px 24px -9px rgba(0,0,0,0.75);
 `;
 
@@ -63,7 +63,7 @@ const UserInfo = styled.div`
 .coin{
     animation: spin 2s infinite;
   }
-	
+
 	p{
 		padding-left: 5%;
 		cursor:pointer;
