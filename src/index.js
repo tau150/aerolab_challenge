@@ -13,11 +13,9 @@ import reducers from './reducers';
 const composeEnhancers =
 window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?   
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-    // options like actionSanitizer, stateSanitizer
   }) : compose;
 const enhancer = composeEnhancers(
 applyMiddleware(ReduxPromise, thunk),
-// other store enhancers if any
 );
 
 

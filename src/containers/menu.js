@@ -247,7 +247,7 @@ class Menu extends Component {
           </FilterBadge>
           <FilterBadge className={this.state.order === 'low_price' ? 'active' : null }
                        onClick={ this.handleOnClickOrder.bind(this, this.props.products, 'cost', 'asc', 'low_price')}>
-                       Low Price
+                       Lowest Price
           </FilterBadge>
           <FilterBadge className={this.state.order === 'highest_price' ? 'active' : null }
                        onClick={ this.handleOnClickOrder.bind(this, this.props.products, 'cost', 'desc', 'highest_price')}>

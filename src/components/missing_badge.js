@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import coin from '../assets/images//icons/coin.svg';
 
 const Badge = styled.div`
-  width: 50%;
+  width: 60%;
   background: rgba(0,0,0,0.7);
   position: absolute;
   top: 10%;

@@ -17,7 +17,7 @@ const UserHeader = styled.div`
 	height: 15vh;
 	background: #fff;
   align-content:center;
-	z-index: 0;
+	z-index: 300;
 	box-shadow: 0px 10px 24px -9px rgba(0,0,0,0.75);
 `;
 
@@ -54,15 +54,12 @@ const UserInfo = styled.div`
 		border-radius: 0 12px 12px 0;
 
 	}
-	@keyframes spin {
+
+		@keyframes spin {
     from {transform:rotateY(0deg);}
     to {transform:rotateY(360deg);}
 }
 
-	
-.coin{
-    animation: spin 2s infinite;
-  }
 
 	p{
 		padding-left: 5%;
@@ -74,6 +71,7 @@ const UserInfo = styled.div`
 		span{
 			font-weigth:bold;
 			color: #2DDBFC;
+			
 		}
 		
 	}
@@ -113,7 +111,7 @@ class LoggedUser extends Component{
 						<p className='points'> {this.props.points}</p>
 						<img src={coin } className='coin' alt='coin'/>
 					</div>
-						<p onClick={ this.handleAlert.bind(this)}> <span>+</span> Coins</p>
+						<p onClick={ this.handleAlert.bind(this)}> <span><i className='ion-plus-circled'></i></span> Coins</p>
         </UserInfo>
       </UserHeader>
     )

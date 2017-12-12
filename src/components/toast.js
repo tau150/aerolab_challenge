@@ -34,7 +34,7 @@ const ToastBody = styled.div.attrs({
   justify-content:flex-start;
   align-items: center;
   box-shadow: 2px 6px 28px -4px rgba(0,0,0,0.57);
-  margin-top: 3%;
+  margin-top: 10%;
   margin-right: 2%;
   opacity: 0;
   animation: 3s fadeIn;
@@ -61,6 +61,24 @@ const ToastBody = styled.div.attrs({
 
   }
 
+  @keyframes loading {
+	to { transform: rotate(360deg); }
+}
+  
+  #loading{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: transparent;
+    margin-left: 10px;
+    border-top: 4px solid #fff;
+    border-right: 4px solid #fff;
+    border-bottom: 4px solid rgba(255,255,255,0.3);
+    border-left: 4px solid rgba(255,255,255,0.3);
+    animation: loading 1.2s infinite linear;
+    
+    }
+  }
 
 
   i{
@@ -78,7 +96,7 @@ const Toast = (props)=> {
   if( !props.notifications.message ) return null;
   let icon ;
   if(props.notifications.status === 'info' ){
-    icon = <i className='ion-loading-c'></i> 
+    icon = <div id="loading"></div>
    
   } else if (props.notifications.status === 'success'){
     icon = <i className='ion-checkmark-circled'></i> 

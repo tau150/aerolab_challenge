@@ -79,7 +79,7 @@ const Icon = styled.i`
 position:absolute;
 top: 5%;
 left: 10%;
-font-size: 25px;
+font-size: 30px;
 cursor: pointer;
 color: ${props => props.favourite ? '#FF0000' :  '#FBD4CE'};
 `
