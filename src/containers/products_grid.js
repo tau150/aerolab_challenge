@@ -23,13 +23,13 @@ const Grid = styled.div`
 
   @media(min-width: 550px){
     .product{
-      width: 40%;
+      width: 30%;
       margin: 20px 0;
     }
 
   @media(min-width: 768px){
     .product{
-      width: 30%;
+      width: 20%;
       margin: 20px 0;
     }
   }

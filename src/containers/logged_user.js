@@ -54,7 +54,16 @@ const UserInfo = styled.div`
 		border-radius: 0 12px 12px 0;
 
 	}
+	@keyframes spin {
+    from {transform:rotateY(0deg);}
+    to {transform:rotateY(360deg);}
+}
 
+	
+.coin{
+    animation: spin 2s infinite;
+  }
+	
 	p{
 		padding-left: 5%;
 		cursor:pointer;
@@ -102,7 +111,7 @@ class LoggedUser extends Component{
           <p>{this.props.loggedUser.name} </p>
 					<div>
 						<p className='points'> {this.props.points}</p>
-						<img src={coin } alt='coin'/>
+						<img src={coin } className='coin' alt='coin'/>
 					</div>
 						<p onClick={ this.handleAlert.bind(this)}> <span>+</span> Coins</p>
         </UserInfo>

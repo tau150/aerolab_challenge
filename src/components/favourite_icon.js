@@ -6,7 +6,7 @@ const Icon = styled.i`
 position:absolute;
 top: 5%;
 left: 10%;
-font-size: 40px;
+font-size: 30px;
 z-index: 2000;
 cursor: pointer;
 `

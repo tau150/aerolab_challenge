@@ -81,9 +81,11 @@ const Toast = (props)=> {
     icon = null
    
   } else if (props.notifications.status === 'success'){
-    icon = <i className='ion-ios-checkmark-outline'></i> 
+    icon = <i className='ion-checkmark-circled'></i> 
+  }else if(props.notifications.status === 'loading'){
+    icon = <i className='ion-load-c'></i>  
   }else{
-    icon = <i className='ion-ios-close-outline'></i>  
+    icon = <i className='ion-close-circled'></i>  
   }
 
   return(

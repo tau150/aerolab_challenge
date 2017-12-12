@@ -39,8 +39,18 @@ const Mask = styled.div`
     width: 50px;
   }
 
+
   .favourite-icon{
     color: ${props => props.favourite ? 'violet' :  '#fff'};
+  }
+
+  @keyframes spin {
+    from {transform:rotateY(0deg);}
+    to {transform:rotateY(360deg);}
+}
+
+  .coin{
+    animation: spin 2s ease;
   }
 
   a{
@@ -81,7 +91,7 @@ class RedeemMask extends Component {
 
         <div>
           <p> {this.props.cost}</p>
-          <img src={coin} alt='coin' />
+          <img className='coin' src={coin} alt='coin' />
         </div>
         <img className='buy-white' src={buyWhite} alt='Buy' />
         <a onClick={ this.handleOnClickRedeem.bind(this, this.props.productId)}>Redeem now !</a>
