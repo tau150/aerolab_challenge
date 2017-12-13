@@ -76,12 +76,34 @@ const ProductContainer = styled.div`
 `;
 
 const Icon = styled.i`
+
+@keyframes beatHeart {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.1);
+  }
+  40% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
 position:absolute;
 top: 5%;
 left: 10%;
+padding: 2%;
 font-size: 30px;
 cursor: pointer;
 color: ${props => props.favourite ? '#FF0000' :  '#FBD4CE'};
+animation:  ${props => props.favourite ? '.8s infinite beatHeart;' :  null}; 
 `
 
 
